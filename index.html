@@ -1,0 +1,2972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Silver Code Automation — AI Automation Agency</title>
+
+  <!-- Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&family=Bebas+Neue&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =========================================================
+       ROOT VARIABLES
+    ========================================================= */
+    :root {
+      --silver-50: #f9f9fb;
+      --silver-75: #f5f5f8;
+      --silver-100: #f2f2f5;
+      --silver-150: #ececf1;
+      --silver-200: #e4e4ea;
+      --silver-250: #d8d8e2;
+      --silver-300: #c8c8d4;
+      --silver-350: #b7b7c7;
+      --silver-400: #a0a0b4;
+      --silver-450: #9090a6;
+      --silver-500: #787890;
+      --silver-550: #6a6a82;
+      --silver-600: #585870;
+      --silver-650: #4d4d63;
+      --silver-700: #3c3c52;
+      --silver-750: #313145;
+      --silver-800: #22222e;
+      --silver-850: #1a1a24;
+      --silver-900: #10101a;
+
+      --accent: #8a8aaa;
+      --accent-light: #b8b8d0;
+      --accent-soft: rgba(138, 138, 170, 0.12);
+      --accent-border: rgba(138, 138, 170, 0.24);
+
+      --white: #ffffff;
+
+      --text-primary: #1a1a28;
+      --text-secondary: #54546a;
+      --text-muted: #8a8aa0;
+      --text-soft: #6e6e84;
+
+      --border: rgba(160, 160, 180, 0.18);
+      --border-strong: rgba(160, 160, 180, 0.32);
+
+      --glass: rgba(255, 255, 255, 0.72);
+      --glass-strong: rgba(255, 255, 255, 0.86);
+
+      --shadow-xs: 0 2px 8px rgba(100, 100, 130, 0.05);
+      --shadow-sm: 0 2px 12px rgba(100, 100, 130, 0.08);
+      --shadow-md: 0 8px 40px rgba(100, 100, 130, 0.12);
+      --shadow-lg: 0 24px 80px rgba(100, 100, 130, 0.18);
+      --shadow-xl: 0 36px 120px rgba(80, 80, 110, 0.16);
+
+      --container: 1280px;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 38px;
+
+      --nav-height: 78px;
+      --transition-fast: 0.2s ease;
+      --transition-med: 0.35s ease;
+      --transition-slow: 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--silver-50);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    /* =========================================================
+       GLOBAL BACKGROUND
+    ========================================================= */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse 40% 30% at 18% 12%,
+          rgba(210, 210, 228, 0.22) 0%,
+          transparent 70%
+        ),
+        radial-gradient(
+          ellipse 34% 26% at 84% 20%,
+          rgba(190, 190, 218, 0.16) 0%,
+          transparent 72%
+        ),
+        radial-gradient(
+          ellipse 36% 28% at 60% 84%,
+          rgba(170, 170, 205, 0.10) 0%,
+          transparent 70%
+        );
+    }
+
+    /* =========================================================
+       UTILITIES
+    ========================================================= */
+    .site-shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 110px 0;
+    }
+
+    .section-tight {
+      padding: 86px 0;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 34px;
+      height: 1px;
+      background: var(--accent);
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4.6vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 18px;
+    }
+
+    .section-copy {
+      font-size: 1.03rem;
+      line-height: 1.85;
+      color: var(--text-secondary);
+      max-width: 760px;
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(160, 160, 180, 0.2) 20%,
+        rgba(160, 160, 180, 0.28) 50%,
+        rgba(160, 160, 180, 0.2) 80%,
+        transparent 100%
+      );
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      background: rgba(249, 249, 251, 0.82);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(160, 160, 180, 0.12);
+      transition:
+        background var(--transition-med),
+        border-color var(--transition-med),
+        box-shadow var(--transition-med);
+    }
+
+    .nav.scrolled {
+      background: rgba(249, 249, 251, 0.92);
+      border-bottom-color: rgba(160, 160, 180, 0.18);
+      box-shadow: 0 10px 40px rgba(90, 90, 120, 0.06);
+    }
+
+    .nav-inner {
+      width: min(var(--container), calc(100% - 48px));
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    .nav-brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.92),
+          rgba(220, 220, 232, 0.86)
+        );
+      border: 1px solid rgba(160, 160, 180, 0.24);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 12px 28px rgba(100, 100, 130, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-brand-mark::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 10px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(110, 110, 140, 0.95),
+          rgba(180, 180, 206, 0.85)
+        );
+      clip-path: polygon(50% 0%, 100% 100%, 0 100%);
+      opacity: 0.95;
+    }
+
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-brand-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.28rem;
+      font-weight: 500;
+      letter-spacing: 0.035em;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .nav-brand-title span {
+      color: var(--accent);
+    }
+
+    .nav-brand-sub {
+      margin-top: 4px;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      font-size: 0.79rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      transition:
+        color var(--transition-fast),
+        opacity var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform var(--transition-fast);
+    }
+
+    .nav-menu a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-menu a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      transition:
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--white);
+      padding: 14px 24px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 24px rgba(26, 26, 40, 0.16);
+    }
+
+    .btn-primary:hover {
+      background: var(--silver-700);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(26, 26, 40, 0.22);
+    }
+
+    .btn-primary .arrow {
+      transition: transform 0.25s ease;
+    }
+
+    .btn-primary:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 13px 20px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.94);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.8);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--text-primary);
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-toggle span::before {
+      top: -6px;
+    }
+
+    .nav-toggle span::after {
+      top: 6px;
+    }
+
+    .mobile-panel {
+      display: none;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding-top: calc(var(--nav-height) + 36px);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(
+          ellipse 70% 60% at 80% 36%,
+          rgba(180, 180, 210, 0.18) 0%,
+          transparent 60%
+        ),
+        radial-gradient(
+          ellipse 48% 48% at 18% 82%,
+          rgba(160, 160, 200, 0.10) 0%,
+          transparent 55%
+        ),
+        linear-gradient(
+          170deg,
+          var(--silver-100) 0%,
+          var(--silver-50) 58%,
+          var(--white) 100%
+        );
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(150, 150, 180, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(150, 150, 180, 0.05) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 95%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(var(--container), calc(100% - 48px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 40px;
+      align-items: center;
+      padding: 70px 0 90px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      animation: heroFadeUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 34px;
+      height: 1px;
+      background: var(--accent);
+      display: block;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.3rem, 6vw, 5.7rem);
+      font-weight: 300;
+      line-height: 1.03;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 28px;
+      max-width: 760px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      max-width: 600px;
+      font-size: 1.08rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 42px;
+    }
+
+    .hero-trust {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 780px;
+    }
+
+    .hero-trust-card {
+      padding: 18px 18px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(160, 160, 180, 0.14);
+      box-shadow: var(--shadow-xs);
+      transition:
+        transform var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .hero-trust-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(160, 160, 180, 0.24);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-trust-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+    }
+
+    .hero-trust-card p {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: heroFadeUp 0.95s 0.14s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .visual-frame {
+      position: relative;
+      width: min(560px, 100%);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-ring-1,
+    .visual-ring-2,
+    .visual-ring-3 {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .visual-ring-1 {
+      inset: 10%;
+      border: 1px solid rgba(160, 160, 200, 0.18);
+      animation: rotateSlow 26s linear infinite;
+    }
+
+    .visual-ring-2 {
+      inset: 1%;
+      border: 1px dashed rgba(160, 160, 200, 0.12);
+      animation: rotateSlow 34s linear infinite reverse;
+    }
+
+    .visual-ring-3 {
+      inset: 22%;
+      border: 1px solid rgba(160, 160, 200, 0.10);
+      animation: pulseRing 5s ease-in-out infinite;
+    }
+
+    .visual-core {
+      position: relative;
+      width: 64%;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: floatY 7s ease-in-out infinite;
+    }
+
+    .core-pyramid {
+      position: absolute;
+      width: 72%;
+      aspect-ratio: 1 / 1;
+      clip-path: polygon(50% 0%, 100% 100%, 0 100%);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(222, 222, 234, 0.95) 24%,
+          rgba(150, 150, 180, 0.9) 70%,
+          rgba(90, 90, 120, 0.9) 100%
+        );
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 24px 70px rgba(100, 100, 130, 0.18);
+      filter: drop-shadow(0 14px 42px rgba(110, 110, 145, 0.16));
+    }
+
+    .core-pyramid::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 5%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 70%;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.6),
+        rgba(255, 255, 255, 0.08)
+      );
+      opacity: 0.6;
+    }
+
+    .core-glow {
+      position: absolute;
+      inset: 20%;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(188, 188, 215, 0.32) 0%,
+          rgba(188, 188, 215, 0.08) 40%,
+          transparent 74%
+        );
+      filter: blur(8px);
+    }
+
+    .stat-badge {
+      position: absolute;
+      min-width: 168px;
+      max-width: 200px;
+      padding: 16px 18px;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .stat-badge:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-strong);
+    }
+
+    .stat-badge strong {
+      display: block;
+      font-size: 1.02rem;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .stat-badge span {
+      display: block;
+      font-size: 0.84rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .badge-top-right {
+      top: 11%;
+      right: -2%;
+      animation: floatBadge 6.5s ease-in-out infinite;
+    }
+
+    .badge-mid-left {
+      left: -4%;
+      top: 42%;
+      animation: floatBadge 7.2s ease-in-out infinite reverse;
+    }
+
+    .badge-bottom-right {
+      right: 2%;
+      bottom: 10%;
+      animation: floatBadge 6.8s ease-in-out infinite;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      animation: fadeInSoft 1.4s 0.9s both;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(
+        180deg,
+        rgba(138, 138, 170, 0),
+        rgba(138, 138, 170, 0.7),
+        rgba(138, 138, 170, 0)
+      );
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-scroll-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -20px;
+      width: 1px;
+      height: 20px;
+      background: rgba(138, 138, 170, 0.85);
+      animation: scrollIndicator 1.8s ease-in-out infinite;
+    }
+
+    /* =========================================================
+       STRIP / VALUE BAR
+    ========================================================= */
+    .value-strip {
+      position: relative;
+      z-index: 2;
+      margin-top: -34px;
+    }
+
+    .value-strip-inner {
+      width: min(var(--container), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 18px 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(160, 160, 180, 0.15);
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .value-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      transition: background var(--transition-fast);
+    }
+
+    .value-item:hover {
+      background: rgba(138, 138, 170, 0.05);
+    }
+
+    .value-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(138, 138, 170, 0.12);
+      color: var(--silver-700);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .value-text strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .value-text span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       PROBLEMS SECTION
+    ========================================================= */
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .problem-card {
+      position: relative;
+      padding: 30px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .problem-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(160, 160, 180, 0.26);
+    }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 1px;
+      background: linear-gradient(
+        180deg,
+        rgba(138, 138, 170, 0),
+        rgba(138, 138, 170, 0.6),
+        rgba(138, 138, 170, 0)
+      );
+      opacity: 0.7;
+    }
+
+    .problem-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .problem-emoji {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: rgba(138, 138, 170, 0.10);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .problem-title {
+      font-size: 1.14rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin-top: 2px;
+    }
+
+    .problem-copy {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    /* =========================================================
+       SERVICES SECTION
+    ========================================================= */
+    .services-wrap {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .services-main {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 30px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(160, 160, 180, 0.25);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(138, 138, 170, 0.12);
+      color: var(--silver-700);
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 1.14rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .service-card ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .service-card li {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .service-card li::before {
+      content: '•';
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .services-side {
+      padding: 30px;
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.82),
+          rgba(242, 242, 247, 0.76)
+        );
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: calc(var(--nav-height) + 26px);
+    }
+
+    .services-side h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+
+    .services-side p {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .services-side-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .services-side-list li {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(138, 138, 170, 0.06);
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      border: 1px solid rgba(138, 138, 170, 0.08);
+    }
+
+    /* =========================================================
+       OUTCOMES SECTION
+    ========================================================= */
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .outcome-card {
+      position: relative;
+      padding: 28px 24px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-sm);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .outcome-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(160, 160, 180, 0.24);
+    }
+
+    .outcome-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(138, 138, 170, 0.12);
+      font-size: 1.12rem;
+      margin-bottom: 16px;
+    }
+
+    .outcome-card h3 {
+      font-size: 1.08rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .outcome-card p {
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .outcome-card .mini-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .outcome-card .mini-list span {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       APPROACH SECTION
+    ========================================================= */
+    .approach-wrap {
+      display: grid;
+      grid-template-columns: 0.98fr 1.02fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .approach-panel {
+      padding: 34px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach-panel::after {
+      content: '';
+      position: absolute;
+      inset: auto -10% -10% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(180, 180, 215, 0.12),
+          transparent 70%
+        );
+      pointer-events: none;
+    }
+
+    .approach-panel h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+
+    .approach-panel p {
+      font-size: 0.98rem;
+      line-height: 1.82;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    .approach-points {
+      display: grid;
+      gap: 16px;
+    }
+
+    .approach-point {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px 0;
+      border-top: 1px solid rgba(160, 160, 180, 0.12);
+    }
+
+    .approach-point:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .approach-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(138, 138, 170, 0.12);
+      font-size: 1rem;
+    }
+
+    .approach-point strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+    }
+
+    .approach-point span {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* =========================================================
+       HOW IT WORKS
+    ========================================================= */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .step-card {
+      position: relative;
+      padding: 30px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-sm);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .step-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(160, 160, 180, 0.24);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(138, 138, 170, 0.12);
+      color: var(--silver-700);
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .step-card h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .step-card p {
+      font-size: 0.95rem;
+      line-height: 1.78;
+      color: var(--text-secondary);
+    }
+
+    /* =========================================================
+       AUDIT CTA
+    ========================================================= */
+    .audit-section {
+      padding: 116px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audit-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.74),
+          rgba(242, 242, 246, 0.92)
+        );
+    }
+
+    .audit-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          ellipse 30% 22% at 20% 35%,
+          rgba(180, 180, 216, 0.14),
+          transparent 70%
+        ),
+        radial-gradient(
+          ellipse 24% 18% at 82% 64%,
+          rgba(170, 170, 206, 0.12),
+          transparent 74%
+        );
+    }
+
+    .audit-box {
+      position: relative;
+      z-index: 1;
+      width: min(1100px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 54px;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(22px);
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .audit-copy h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4.8vw, 4rem);
+      font-weight: 300;
+      line-height: 1.04;
+      margin-bottom: 18px;
+      color: var(--text-primary);
+    }
+
+    .audit-copy p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin-bottom: 24px;
+    }
+
+    .audit-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .audit-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.93rem;
+      line-height: 1.68;
+      color: var(--text-secondary);
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(138, 138, 170, 0.06);
+      border: 1px solid rgba(138, 138, 170, 0.08);
+    }
+
+    .audit-form-card {
+      padding: 26px;
+      border-radius: 24px;
+      background: rgba(249, 249, 251, 0.92);
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .audit-form-card h3 {
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .audit-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(160, 160, 180, 0.18);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-primary);
+      padding: 15px 16px;
+      outline: none;
+      transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(138, 138, 170, 0.35);
+      box-shadow: 0 0 0 4px rgba(138, 138, 170, 0.08);
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .micro-note {
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* =========================================================
+       FAQ
+    ========================================================= */
+    .faq-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .faq-item {
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-xs);
+      overflow: hidden;
+      transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .faq-item.open {
+      border-color: rgba(160, 160, 180, 0.24);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text-primary);
+    }
+
+    .faq-question span {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .faq-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(138, 138, 170, 0.10);
+      color: var(--silver-700);
+      flex-shrink: 0;
+      transition: transform var(--transition-fast);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 22px;
+      font-size: 0.95rem;
+      line-height: 1.82;
+      color: var(--text-secondary);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    .footer {
+      position: relative;
+      padding: 72px 0 42px;
+      overflow: hidden;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: start;
+      margin-bottom: 36px;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-brand h3 span {
+      color: var(--accent);
+    }
+
+    .footer-brand p {
+      max-width: 620px;
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .footer-column h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-column li,
+    .footer-column a {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-column a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(160, 160, 180, 0.14);
+      color: var(--text-muted);
+      font-size: 0.84rem;
+    }
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================= */
+    @keyframes heroFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatY {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-14px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes floatBadge {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes rotateSlow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulseRing {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.9;
+      }
+      50% {
+        transform: scale(1.03);
+        opacity: 0.45;
+      }
+    }
+
+    @keyframes scrollIndicator {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(42px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeInSoft {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 1180px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 54px;
+        padding-top: 52px;
+      }
+
+      .hero-copy {
+        text-align: center;
+      }
+
+      .hero-sub {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-trust {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .services-wrap,
+      .approach-wrap,
+      .audit-box,
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .services-side {
+        position: relative;
+        top: auto;
+      }
+
+      .badge-top-right {
+        right: 4%;
+      }
+
+      .badge-mid-left {
+        left: 2%;
+      }
+
+      .badge-bottom-right {
+        right: 6%;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .nav-menu,
+      .nav-actions .btn-secondary,
+      .nav-actions .btn-primary {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .mobile-panel {
+        display: none;
+        position: fixed;
+        top: calc(var(--nav-height) + 10px);
+        left: 24px;
+        right: 24px;
+        z-index: 999;
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(160, 160, 180, 0.16);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .mobile-panel.open {
+        display: block;
+      }
+
+      .mobile-panel ul {
+        list-style: none;
+        display: grid;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .mobile-panel a {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(138, 138, 170, 0.05);
+        color: var(--text-primary);
+        font-size: 0.9rem;
+      }
+
+      .mobile-panel .mobile-actions {
+        display: grid;
+        gap: 10px;
+      }
+
+      .value-strip-inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .problems-grid,
+      .services-main,
+      .steps-grid,
+      .outcomes-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-trust {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .audit-box {
+        padding: 34px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container,
+      .nav-inner,
+      .hero-inner,
+      .value-strip-inner,
+      .audit-box,
+      .mobile-panel {
+        width: calc(100% - 32px);
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-headline {
+        font-size: clamp(2.7rem, 11vw, 4rem);
+      }
+
+      .hero-sub,
+      .section-copy,
+      .audit-copy p {
+        font-size: 0.98rem;
+      }
+
+      .problems-grid,
+      .services-main,
+      .steps-grid,
+      .outcomes-grid,
+      .footer-links,
+      .value-strip-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-badge {
+        position: static;
+        max-width: none;
+        width: 100%;
+      }
+
+      .visual-frame {
+        gap: 16px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .badge-top-right,
+      .badge-mid-left,
+      .badge-bottom-right {
+        animation: none;
+      }
+
+      .hero-scroll {
+        display: none;
+      }
+
+      .audit-box {
+        padding: 26px;
+        border-radius: 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="#top" class="nav-brand">
+          <div class="nav-brand-mark"></div>
+          <div class="nav-brand-text">
+            <div class="nav-brand-title">
+              Silver <span>Code Automation</span>
+            </div>
+            <div class="nav-brand-sub">
+              AI Automation Agency
+            </div>
+          </div>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul class="nav-menu">
+            <li>
+              <a href="#services">Services</a>
+            </li>
+            <li>
+              <a href="#outcomes">Outcomes</a>
+            </li>
+            <li>
+              <a href="#approach">Approach</a>
+            </li>
+            <li>
+              <a href="#audit">Free Audit</a>
+            </li>
+            <li>
+              <a href="#faq">FAQ</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="mailto:rajvir@silvercode.uk" class="btn btn-secondary">
+  Contact
+</a>
+          <a href="#services" class="btn btn-secondary">
+            Explore Services
+          </a>
+          <a href="#audit" class="btn btn-primary">
+            Free Automation Audit
+            <span class="arrow">→</span>
+          </a>
+        </div>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+          type="button"
+        >
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-panel" id="mobilePanel">
+      <ul>
+        <li>
+          <a href="#services">Services</a>
+        </li>
+        <li>
+          <a href="#outcomes">Outcomes</a>
+        </li>
+        <li>
+          <a href="#approach">Approach</a>
+        </li>
+        <li>
+          <a href="#audit">Free Audit</a>
+        </li>
+        <li>
+          <a href="#faq">FAQ</a>
+        </li>
+      </ul>
+
+      <div class="mobile-actions">
+        <a href="#services" class="btn btn-secondary">
+          Explore Services
+        </a>
+        <a href="#audit" class="btn btn-primary">
+          Free Automation Audit
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+    <section class="hero" id="top">
+      <div class="hero-bg"></div>
+
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">
+            Outcome-Focused AI Automation
+          </div>
+
+          <h1 class="hero-headline">
+            Elegant automation systems that help businesses
+            <em>move faster</em>, operate cleaner, and grow with less friction
+          </h1>
+
+          <p class="hero-sub">
+            Silver Code Automation helps businesses reduce manual workload, improve
+            response speed, increase operational efficiency, and build better
+            systems through practical AI automation. The goal is not more tools
+            for the sake of it — it is better outcomes, clearer workflows, and
+            stronger business performance.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#audit" class="btn btn-primary">
+              Get a Free Automation Audit
+              <span class="arrow">→</span>
+            </a>
+
+            <a href="#services" class="btn btn-secondary">
+              See What We Do
+            </a>
+          </div>
+
+          <div class="hero-trust">
+            <div class="hero-trust-card">
+              <strong>Business-first thinking</strong>
+              <p>
+                We focus on operational results, not technical jargon.
+              </p>
+            </div>
+
+            <div class="hero-trust-card">
+              <strong>Premium, practical systems</strong>
+              <p>
+                Clean automation that feels aligned with how your business
+                actually works.
+              </p>
+            </div>
+
+            <div class="hero-trust-card">
+              <strong>Outcomes over gimmicks</strong>
+              <p>
+                Faster follow-up, less admin, fewer gaps, and more leverage.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-frame">
+            <div class="visual-ring-1"></div>
+            <div class="visual-ring-2"></div>
+            <div class="visual-ring-3"></div>
+
+            <div class="visual-core">
+              <div class="core-glow"></div>
+              <div class="core-pyramid"></div>
+            </div>
+
+            <div class="stat-badge badge-top-right">
+              <strong>⏱️ Time saved</strong>
+              <span>
+                Remove repetitive admin and increase capacity without adding more
+                friction.
+              </span>
+            </div>
+
+            <div class="stat-badge badge-mid-left">
+              <strong>📈 Revenue improved</strong>
+              <span>
+                Faster follow-up and better systems can convert more of the same
+                traffic.
+              </span>
+            </div>
+
+            <div class="stat-badge badge-bottom-right">
+              <strong>🛡️ Risk reduced</strong>
+              <span>
+                Fewer missed leads, fewer errors, and cleaner workflows across
+                the business.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         VALUE STRIP
+    ====================================================== -->
+    <section class="value-strip">
+      <div class="value-strip-inner reveal">
+        <div class="value-item">
+          <div class="value-icon">⚡</div>
+          <div class="value-text">
+            <strong>Faster response times</strong>
+            <span>Reduce delay between enquiry and action.</span>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="value-icon">📅</div>
+          <div class="value-text">
+            <strong>Smarter scheduling</strong>
+            <span>Automate bookings, confirmations, and reminders.</span>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="value-icon">💸</div>
+          <div class="value-text">
+            <strong>Lower wasted spend</strong>
+            <span>Cut errors, missed follow-ups, and low-value admin time.</span>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="value-icon">🤖</div>
+          <div class="value-text">
+            <strong>Practical AI leverage</strong>
+            <span>Use AI where it creates real movement in the business.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PROBLEMS
+    ====================================================== -->
+    <section class="section" id="problems">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">Common Business Bottlenecks</div>
+          <h2 class="section-title">
+            Where businesses quietly lose time, money, and momentum
+          </h2>
+          <p class="section-copy">
+            Many businesses do not have a demand problem as much as they have a
+            systems problem. Slow response times, scattered admin, missed
+            follow-ups, inconsistent handling, and messy processes can create
+            drag across the whole business — even when demand is already there.
+          </p>
+        </div>
+
+        <div class="problems-grid">
+          <article class="problem-card reveal">
+            <div class="problem-top">
+              <div class="problem-emoji">⏳</div>
+              <h3 class="problem-title">
+                Slow responses lose opportunities
+              </h3>
+            </div>
+            <p class="problem-copy">
+              Prospective customers often do not get a fast enough response.
+              That delay can mean colder leads, lower trust, and lost revenue
+              before the sales conversation has even started.
+            </p>
+          </article>
+
+          <article class="problem-card reveal">
+            <div class="problem-top">
+              <div class="problem-emoji">📉</div>
+              <h3 class="problem-title">
+                Manual admin drains capacity
+              </h3>
+            </div>
+            <p class="problem-copy">
+              Repetitive tasks, back-and-forth scheduling, copying information
+              between systems, and chasing small actions all consume time that
+              could be spent on higher-value work.
+            </p>
+          </article>
+
+          <article class="problem-card reveal">
+            <div class="problem-top">
+              <div class="problem-emoji">💸</div>
+              <h3 class="problem-title">
+                Missed follow-ups cost revenue
+              </h3>
+            </div>
+            <p class="problem-copy">
+              A lead does not need to say “no” for revenue to be lost. Sometimes
+              the loss comes from inconsistency, delayed contact, or a process
+              that was never strong enough to convert properly.
+            </p>
+          </article>
+
+          <article class="problem-card reveal">
+            <div class="problem-top">
+              <div class="problem-emoji">⚠️</div>
+              <h3 class="problem-title">
+                Process gaps create avoidable risk
+              </h3>
+            </div>
+            <p class="problem-copy">
+              Errors, messy data, forgotten actions, missed handovers, and
+              unclear workflows can damage reputation, undermine consistency, and
+              create problems long before they become visible.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SERVICES
+    ====================================================== -->
+    <section class="section section-tight" id="services">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">What We Do</div>
+          <h2 class="section-title">
+            AI automation services designed around outcomes, not hype
+          </h2>
+          <p class="section-copy">
+            Businesses do not pay for software categories. They invest in
+            movement: less friction, more speed, better conversion, stronger
+            operations, and cleaner systems. That is how we think about AI
+            automation — as a layer of leverage that should improve the business
+            in concrete terms.
+          </p>
+        </div>
+
+        <div class="services-wrap">
+          <div class="services-main">
+            <article class="service-card reveal">
+              <div class="service-icon">⚡</div>
+              <h3>Lead capture and response automation</h3>
+              <p>
+                Build systems that handle new enquiries more effectively, reduce
+                delay, and create a better first response experience.
+              </p>
+              <ul>
+                <li>Instant form capture and routing</li>
+                <li>Automated acknowledgement and follow-up</li>
+                <li>Cleaner enquiry handling across channels</li>
+              </ul>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-icon">📅</div>
+              <h3>Booking and scheduling workflows</h3>
+              <p>
+                Reduce back-and-forth and manual coordination with streamlined
+                scheduling systems that keep appointments moving properly.
+              </p>
+              <ul>
+                <li>Automated booking journeys</li>
+                <li>Confirmation and reminder flows</li>
+                <li>Fewer missed appointments and delays</li>
+              </ul>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-icon">🤖</div>
+              <h3>AI-powered enquiry handling</h3>
+              <p>
+                Use AI to support first-line interactions, qualify interest,
+                answer common questions, and move people toward the right next
+                step.
+              </p>
+              <ul>
+                <li>Website assistant and chatbot flows</li>
+                <li>Structured information capture</li>
+                <li>More consistent enquiry handling</li>
+              </ul>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-icon">🔄</div>
+              <h3>Internal workflow automation</h3>
+              <p>
+                Connect processes behind the scenes so information moves more
+                cleanly, repetitive work is reduced, and operations become more
+                reliable.
+              </p>
+              <ul>
+                <li>Task routing and trigger-based actions</li>
+                <li>Data movement between systems</li>
+                <li>Less manual repetition and fewer gaps</li>
+              </ul>
+            </article>
+          </div>
+
+          <aside class="services-side reveal">
+            <h3>Examples of where automation helps</h3>
+            <p>
+              Good automation should support commercial performance and
+              operational clarity. It should not feel like unnecessary
+              complexity. It should remove drag.
+            </p>
+
+            <ul class="services-side-list">
+              <li>📥 Capturing leads without letting enquiries sit unattended</li>
+              <li>📲 Responding faster so opportunities do not cool off</li>
+              <li>🗂️ Reducing admin workload across routine tasks</li>
+              <li>📆 Automating appointment handling and reminders</li>
+              <li>🧾 Improving consistency in how information is processed</li>
+              <li>🛡️ Tightening workflows to reduce avoidable mistakes</li>
+            </ul>
+
+            <a href="#audit" class="btn btn-primary">
+              Request Your Free Audit
+              <span class="arrow">→</span>
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         OUTCOMES
+    ====================================================== -->
+    <section class="section" id="outcomes">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">The Four Core Outcomes</div>
+          <h2 class="section-title">
+            The business outcomes that matter most
+          </h2>
+          <p class="section-copy">
+            The value of AI automation is best understood through outcomes, not
+            technical features. In practical terms, the strongest automation
+            systems tend to create four forms of leverage: more time, lower
+            waste, stronger revenue performance, and less operational risk.
+          </p>
+        </div>
+
+        <div class="outcomes-grid">
+          <article class="outcome-card reveal">
+            <div class="outcome-icon">⏱️</div>
+            <h3>Time saved</h3>
+            <p>
+              Save time by reducing repetitive admin, accelerating response
+              speed, and removing unnecessary back-and-forth.
+            </p>
+            <div class="mini-list">
+              <span>• Faster response times</span>
+              <span>• Less manual scheduling</span>
+              <span>• More capacity for valuable work</span>
+            </div>
+          </article>
+
+          <article class="outcome-card reveal">
+            <div class="outcome-icon">💰</div>
+            <h3>Costs reduced</h3>
+            <p>
+              Reduce wasted labour, avoidable mistakes, and the hidden cost of
+              inefficient processes that quietly consume resources.
+            </p>
+            <div class="mini-list">
+              <span>• Fewer manual tasks</span>
+              <span>• Less wasted time</span>
+              <span>• Fewer avoidable process errors</span>
+            </div>
+          </article>
+
+          <article class="outcome-card reveal">
+            <div class="outcome-icon">📈</div>
+            <h3>Revenue increased</h3>
+            <p>
+              Better lead handling, stronger follow-up, and smoother booking
+              flows can improve conversion performance without needing more
+              traffic.
+            </p>
+            <div class="mini-list">
+              <span>• More leads captured properly</span>
+              <span>• Faster follow-up</span>
+              <span>• Better appointment show-up rates</span>
+            </div>
+          </article>
+
+          <article class="outcome-card reveal">
+            <div class="outcome-icon">🛡️</div>
+            <h3>Risk removed</h3>
+            <p>
+              Cleaner systems reduce missed actions, scattered data,
+              inconsistent handling, and small gaps that become larger problems
+              later.
+            </p>
+            <div class="mini-list">
+              <span>• Fewer missed leads</span>
+              <span>• Cleaner operational flow</span>
+              <span>• Less reputational and process damage</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         APPROACH
+    ====================================================== -->
+    <section class="section section-tight" id="approach">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">Our Approach</div>
+          <h2 class="section-title">
+            AI as a layer of leverage — translated into business language
+          </h2>
+          <p class="section-copy">
+            AI is increasingly becoming a serious layer of leverage in the
+            economy. Over time, more businesses will need to adapt. The
+            challenge is that many automation conversations are too technical,
+            too abstract, or too tool-focused. We take a different approach:
+            translate the technology into real commercial and operational value.
+          </p>
+        </div>
+
+        <div class="approach-wrap">
+          <div class="approach-panel reveal">
+            <h3>Why this matters now</h3>
+            <p>
+              In practice, businesses do not buy automation because a workflow
+              diagram looks clever. They buy because they want something in the
+              business to improve. More speed. More consistency. Less waste.
+              Better follow-up. Cleaner operations. Stronger conversion.
+            </p>
+            <p>
+              The real job is to identify where leverage can be introduced and
+              where system improvements can create measurable movement.
+            </p>
+          </div>
+
+          <div class="approach-panel reveal">
+            <h3>How Silver Code thinks about AI</h3>
+
+            <div class="approach-points">
+              <div class="approach-point">
+                <div class="approach-badge">💬</div>
+                <div>
+                  <strong>Speak in business terms</strong>
+                  <span>
+                    Focus on throughput, missed opportunities, speed,
+                    consistency, workload, and commercial impact.
+                  </span>
+                </div>
+              </div>
+
+              <div class="approach-point">
+                <div class="approach-badge">🎯</div>
+                <div>
+                  <strong>Sell outcomes, not tools</strong>
+                  <span>
+                    Software alone is not the point. The point is what changes in
+                    the business after the system is put in place.
+                  </span>
+                </div>
+              </div>
+
+              <div class="approach-point">
+                <div class="approach-badge">⚙️</div>
+                <div>
+                  <strong>Keep execution practical</strong>
+                  <span>
+                    The best automation is often quiet, efficient, and aligned
+                    with the way the business actually operates.
+                  </span>
+                </div>
+              </div>
+
+              <div class="approach-point">
+                <div class="approach-badge">🚀</div>
+                <div>
+                  <strong>Create belief quickly</strong>
+                  <span>
+                    When businesses can clearly see where time, money, revenue,
+                    or risk is being affected, the value becomes much easier to
+                    understand.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         HOW IT WORKS
+    ====================================================== -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">How It Works</div>
+          <h2 class="section-title">
+            A simple process focused on clarity and commercial value
+          </h2>
+          <p class="section-copy">
+            The aim is not to overwhelm businesses with unnecessary technical
+            detail. The aim is to diagnose where automation can create real
+            leverage and then design the right solution around that.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card reveal">
+            <div class="step-number">01</div>
+            <h3>Audit the bottlenecks</h3>
+            <p>
+              We look at where time is being lost, where leads are slipping,
+              where tasks are too manual, and where process gaps may be slowing
+              the business down.
+            </p>
+          </article>
+
+          <article class="step-card reveal">
+            <div class="step-number">02</div>
+            <h3>Design the right automation</h3>
+            <p>
+              The solution is shaped around the business problem itself —
+              whether that means better lead handling, cleaner scheduling,
+              smoother workflows, or more consistent system behaviour.
+            </p>
+          </article>
+
+          <article class="step-card reveal">
+            <div class="step-number">03</div>
+            <h3>Create measurable movement</h3>
+            <p>
+              The goal is always practical business improvement: more speed,
+              stronger efficiency, fewer missed actions, and better operating
+              leverage overall.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         FREE AUDIT
+    ====================================================== -->
+    <section class="audit-section" id="audit">
+      <div class="audit-bg"></div>
+
+      <div class="audit-box reveal">
+        <div class="audit-copy">
+          <div class="eyebrow">Free Automation Audit</div>
+          <h2>
+            Find where your business is losing time, leads, and operational
+            leverage
+          </h2>
+          <p>
+            Request a free automation audit and get a clearer view of where AI
+            automation could improve speed, reduce admin burden, strengthen
+            follow-up, lower waste, and tighten workflows. This is designed to
+            surface practical improvement opportunities — not to bury you in
+            technical language.
+          </p>
+
+          <ul class="audit-list">
+            <li>
+              🔍 Identify bottlenecks that slow response times or create admin
+              drag
+            </li>
+            <li>
+              📈 Highlight opportunities to improve lead handling and conversion
+              flow
+            </li>
+            <li>
+              🛡️ Spot process gaps that may be creating avoidable risk or
+              inconsistency
+            </li>
+            <li>
+              ⚙️ Get a clearer sense of where automation can create leverage
+              first
+            </li>
+          </ul>
+        </div>
+
+        <div class="audit-form-card">
+          <h3>Request your free audit</h3>
+
+          <form class="audit-form">
+            <div class="field">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div class="field">
+              <label for="business">Business / Website</label>
+              <input
+                type="text"
+                id="business"
+                name="business"
+                placeholder="Your business name or website"
+              />
+            </div>
+
+            <div class="field">
+              <label for="need">What feels most inefficient right now?</label>
+              <textarea
+                id="need"
+                name="need"
+                placeholder="For example: slow lead follow-up, too much admin, messy scheduling, missed enquiries, inconsistent processes..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Submit Audit Request
+              <span class="arrow">→</span>
+            </button>
+
+            <p class="micro-note">
+  Or contact directly at 
+  <a href="mailto:rajvir@silvercode.uk">rajvir@silvercode.co.uk</a> 
+  or call <a href="tel:07942388695">07942388695</a>.
+</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         FAQ
+    ====================================================== -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">FAQ</div>
+          <h2 class="section-title">
+            A few common questions
+          </h2>
+          <p class="section-copy">
+            Clear communication matters. These questions help frame what this
+            kind of work is really about.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>What exactly is AI automation for a business?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                AI automation is the use of systems, workflows, and intelligent
+                tools to reduce manual work, improve response speed, handle
+                repetitive actions more efficiently, and make business processes
+                more effective. The real value is not the technology by itself —
+                it is the business outcome it creates.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>Is this mainly for large businesses?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Not at all. Smaller businesses often benefit strongly from good
+                automation because they usually have less spare time, less room
+                for operational inefficiency, and fewer people available to deal
+                with repetitive tasks manually.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>What kind of problems can automation help solve?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Typical examples include slow lead response, inconsistent
+                follow-up, manual scheduling, repetitive admin, missed actions,
+                messy internal workflows, and gaps between systems that create
+                unnecessary drag.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>Why focus so much on outcomes rather than tools?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Because businesses invest in improvement, not in feature lists.
+                A workflow only matters if it helps save time, reduce costs,
+                improve conversion, or remove risk. Outcome-first thinking keeps
+                the whole process grounded and commercially useful.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>Do I need to know anything technical before starting?</span>
+              <div class="faq-icon">+</div>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                No. The point is to translate the technical side into business
+                language so the value is clear. The starting point is not
+                “Which tool do I need?” It is “Where is the business losing
+                efficiency, money, or momentum?”
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="divider"></div>
+
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3>Silver <span>Code Automation</span></h3>
+            <p>
+              Premium AI automation for businesses that want better systems,
+              faster workflows, stronger follow-up, and more leverage. The focus
+              is always on movement in the business — not just technology for
+              its own sake.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Navigation</h4>
+              <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#outcomes">Outcomes</a></li>
+                <li><a href="#approach">Approach</a></li>
+                <li><a href="#audit">Free Audit</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4>Focus Areas</h4>
+              <ul>
+                <li>Lead response automation</li>
+                <li>Scheduling workflows</li>
+                <li>AI enquiry systems</li>
+                <li>Internal workflow optimisation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Silver Code Automation. All rights reserved.</span>
+          <span></span>
+           <span>
+    Contact: 
+    <a href="mailto:rajvir@silvercode.uk">rajvir@silvercode.co.uk</a> | 
+    <a href="tel:07942388695">07942388695</a>
+  </span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    /* =========================================================
+       NAV SCROLL STATE
+    ========================================================= */
+    const nav = document.getElementById('nav');
+
+    function handleNavScroll() {
+      if (window.scrollY > 12) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+
+    handleNavScroll();
+    window.addEventListener('scroll', handleNavScroll);
+
+    /* =========================================================
+       MOBILE NAV
+    ========================================================= */
+    const navToggle = document.getElementById('navToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    if (navToggle && mobilePanel) {
+      navToggle.addEventListener('click', function () {
+        const isOpen = mobilePanel.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      mobilePanel.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobilePanel.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    /* =========================================================
+       REVEAL ON SCROLL
+    ========================================================= */
+    const revealItems = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(
+        function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.14
+        }
+      );
+
+      revealItems.forEach(function (item) {
+        revealObserver.observe(item);
+      });
+    } else {
+      revealItems.forEach(function (item) {
+        item.classList.add('is-visible');
+      });
+    }
+
+    /* =========================================================
+       FAQ ACCORDION
+    ========================================================= */
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(function (item) {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+
+      question.addEventListener('click', function () {
+        const isOpen = item.classList.contains('open');
+
+        faqItems.forEach(function (otherItem) {
+          otherItem.classList.remove('open');
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          otherAnswer.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    /* =========================================================
+       DEMO FORM HANDLER
+       Replace with real integration later
+    ========================================================= */
+    const auditForm = document.querySelector('.audit-form');
+
+    if (auditForm) {
+      auditForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Form submitted. Connect this to your email, CRM, or automation workflow.');
+      });
+    }
+  </script>
+</body>
+</html>
