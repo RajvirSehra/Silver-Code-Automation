@@ -95,4 +95,3 @@
     const auditForm = document.querySelector('.audit-form');
 
     // Form is now handled via formsubmit.co
-  </script>
