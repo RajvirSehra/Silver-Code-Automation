@@ -1387,7 +1387,10 @@
       backdrop-filter: blur(22px);
       border: 1px solid rgba(160, 160, 180, 0.16);
       box-shadow: var(--shadow-lg);
-      display: block;
+      display: grid;
+      grid-template-columns: minmax(360px, 0.9fr) minmax(520px, 1.1fr);
+      gap: 34px;
+      align-items: start;
     }
 
     .audit-copy h2 {
@@ -1403,12 +1406,16 @@
       font-size: 1rem;
       line-height: 1.85;
       color: var(--text-secondary);
-      max-width: 880px;
-      margin-bottom: 30px;
+      max-width: 640px;
+      margin-bottom: 0;
+    }
+
+    .audit-calendar {
+      width: 100%;
     }
 
     .calendly-wrapper {
-      margin-top: 2.25rem;
+      margin-top: 0;
       width: 100%;
       border-radius: 24px;
       overflow: hidden;
@@ -1430,7 +1437,7 @@
     .calendly-inline-widget {
       width: 100%;
       min-width: 320px;
-      height: 820px;
+      height: 840px;
     }
 
     .audit-list {
@@ -1833,6 +1840,10 @@
 
       .badge-bottom-right {
         right: 6%;
+      }
+
+      .calendly-wrapper {
+        margin-top: 1.6rem;
       }
     }
 
