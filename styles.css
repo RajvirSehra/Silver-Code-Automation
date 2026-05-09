@@ -1546,6 +1546,35 @@
     }
 
     /* =========================================================
+       CONSULTATION DESKTOP OVERRIDES
+       Keep calendar prominent and form crisp on desktop widths
+    ========================================================= */
+    @media (min-width: 981px) {
+      .audit-box {
+        grid-template-columns: 1.42fr 0.58fr;
+        align-items: start;
+      }
+
+      .calendly-inline-widget {
+        height: 1200px;
+      }
+
+      .audit-form-card {
+        opacity: 1;
+        filter: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(249, 249, 251, 0.98);
+      }
+
+      .audit-form-card,
+      .audit-form-card * {
+        opacity: 1;
+        filter: none;
+      }
+    }
+
+    /* =========================================================
        FAQ
     ========================================================= */
     .faq-grid {
@@ -1816,7 +1845,6 @@
 
       .services-wrap,
       .approach-wrap,
-      .audit-box,
       .footer-top {
         grid-template-columns: 1fr;
       }
