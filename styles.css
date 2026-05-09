@@ -1379,7 +1379,7 @@
     .audit-box {
       position: relative;
       z-index: 1;
-      width: min(1240px, calc(100% - 48px));
+      width: min(1320px, calc(100% - 48px));
       margin: 0 auto;
       padding: 54px;
       border-radius: 32px;
@@ -1388,16 +1388,9 @@
       border: 1px solid rgba(160, 160, 180, 0.16);
       box-shadow: var(--shadow-lg);
       display: grid;
-      grid-template-columns: 1.28fr 0.72fr;
+      grid-template-columns: 1.38fr 0.62fr;
       gap: 28px;
-      align-items: center;
-    }
-
-    /* Keep the consultation area crisp even before reveal observer runs */
-    .audit-box.reveal {
-      opacity: 1;
-      transform: none;
-      filter: none;
+      align-items: start;
     }
 
     .audit-copy h2 {
@@ -1440,7 +1433,7 @@
     .calendly-inline-widget {
       width: 100%;
       min-width: 320px;
-      height: 1020px;
+      height: 1120px;
     }
 
     .audit-list {
