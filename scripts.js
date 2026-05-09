@@ -36,6 +36,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* =========================================================
+     SMOOTH ANCHOR SCROLL WITH NAV OFFSET
+  ========================================================= */
+  const consultationLinks = document.querySelectorAll('a[href="#consultation-booking"]');
+
+  consultationLinks.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      const target = document.getElementById('consultation-booking');
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+      const navHeight = nav ? nav.offsetHeight : 0;
+      const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+      const offsetTop = Math.max(targetTop - navHeight - 10, 0);
+
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  /* =========================================================
      REVEAL ON SCROLL
   ========================================================= */
   const revealItems = document.querySelectorAll('.reveal');

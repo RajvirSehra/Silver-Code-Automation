@@ -1379,7 +1379,7 @@
     .audit-box {
       position: relative;
       z-index: 1;
-      width: min(1100px, calc(100% - 48px));
+      width: min(1240px, calc(100% - 48px));
       margin: 0 auto;
       padding: 54px;
       border-radius: 32px;
@@ -1387,10 +1387,7 @@
       backdrop-filter: blur(22px);
       border: 1px solid rgba(160, 160, 180, 0.16);
       box-shadow: var(--shadow-lg);
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 28px;
-      align-items: center;
+      display: block;
     }
 
     .audit-copy h2 {
@@ -1406,8 +1403,34 @@
       font-size: 1rem;
       line-height: 1.85;
       color: var(--text-secondary);
-      max-width: 640px;
-      margin-bottom: 24px;
+      max-width: 880px;
+      margin-bottom: 30px;
+    }
+
+    .calendly-wrapper {
+      margin-top: 2.25rem;
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(160, 160, 180, 0.16);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow-md);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .calendly-wrapper:hover {
+      transform: translateY(-2px);
+      border-color: rgba(160, 160, 180, 0.24);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .calendly-inline-widget {
+      width: 100%;
+      min-width: 320px;
+      height: 820px;
     }
 
     .audit-list {
@@ -1429,7 +1452,8 @@
       border: 1px solid rgba(138, 138, 170, 0.08);
     }
 
-    .audit-form-card {
+    .audit-form-card,
+    .enquiry-card {
       padding: 26px;
       border-radius: 24px;
       background: rgba(249, 249, 251, 0.92);
@@ -1437,11 +1461,32 @@
       box-shadow: var(--shadow-sm);
     }
 
-    .audit-form-card h3 {
+    .audit-form-card h3,
+    .enquiry-card h3 {
       font-size: 1.08rem;
       font-weight: 500;
       color: var(--text-primary);
       margin-bottom: 16px;
+    }
+
+    .enquiry-section {
+      padding-top: 0;
+    }
+
+    .enquiry-card {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      padding: 34px;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .enquiry-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(160, 160, 180, 0.24);
+      box-shadow: var(--shadow-md);
     }
 
     .audit-form {
@@ -1864,6 +1909,10 @@
       .audit-box {
         padding: 34px;
       }
+
+      .calendly-inline-widget {
+        height: 760px;
+      }
     }
 
     @media (max-width: 720px) {
@@ -1928,6 +1977,18 @@
       .audit-box {
         padding: 26px;
         border-radius: 24px;
+      }
+
+      .calendly-wrapper {
+        margin-top: 1.7rem;
+      }
+
+      .calendly-inline-widget {
+        height: 700px;
+      }
+
+      .enquiry-card {
+        padding: 24px;
       }
 
       .footer-bottom {

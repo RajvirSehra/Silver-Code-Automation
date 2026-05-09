@@ -48,7 +48,7 @@
               <a href="#approach">Approach</a>
             </li>
             <li>
-              <a href="#consultation">Consultation</a>
+            <a href="#consultation-booking">Consultation</a>
             </li>
             <li>
               <a href="#faq">FAQ</a>
@@ -66,7 +66,7 @@
           <a href="#services" class="btn btn-secondary">
             Explore Services
           </a>
-          <a href="https://calendly.com/rajvir-silvercode/20min" class="btn btn-primary">
+          <a href="#consultation-booking" class="btn btn-primary">
             BOOK YOUR CONSULTATION
           </a>
         </div>
@@ -89,7 +89,7 @@
           <a href="#approach">Approach</a>
         </li>
         <li>
-          <a href="#consultation">Consultation</a>
+          <a href="#consultation-booking">Consultation</a>
         </li>
         <li>
           <a href="#faq">FAQ</a>
@@ -103,7 +103,7 @@
         <a href="#services" class="btn btn-secondary">
           Explore Services
         </a>
-        <a href="https://calendly.com/rajvir-silvercode/20min" class="btn btn-primary">
+        <a href="#consultation-booking" class="btn btn-primary">
           BOOK YOUR CONSULTATION
         </a>
       </div>
@@ -139,7 +139,7 @@
           </p>
 
           <div class="hero-actions">
-            <a href="#consultation" class="btn btn-primary">
+            <a href="#consultation-booking" class="btn btn-primary">
               Book a Free Consultation
               <span class="arrow">→</span>
             </a>
@@ -429,7 +429,7 @@
               <li>🛡️ Tightening workflows to reduce avoidable mistakes</li>
             </ul>
 
-            <a href="#consultation" class="btn btn-primary">
+            <a href="#consultation-booking" class="btn btn-primary">
               Book a Free Consultation
               <span class="arrow">→</span>
             </a>
@@ -660,7 +660,7 @@
     <!-- =====================================================
          CONSULTATION
     ====================================================== -->
-    <section class="audit-section" id="consultation">
+    <section class="audit-section" id="consultation-booking">
       <div class="audit-bg"></div>
 
       <div class="audit-box reveal">
@@ -674,14 +674,18 @@
           </p>
 
           <!-- Calendly Inline Widget -->
-          <div class="calendly-wrapper" style="margin-top: 2rem;">
-            <div class="calendly-inline-widget" data-url="https://calendly.com/rajvir-silvercode/20min?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:650px;"></div>
+          <div class="calendly-wrapper">
+            <div class="calendly-inline-widget" data-url="https://calendly.com/rajvir-silvercode/20min?hide_event_type_details=1&hide_gdpr_banner=1"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="audit-form-card">
-          <h3>How can we help?</h3>
+    <section class="section enquiry-section" id="enquiry">
+      <div class="container">
+        <div class="enquiry-card reveal">
+          <h3>Send an enquiry</h3>
 
           <form class="audit-form" action="https://formsubmit.co/rajvir@silvercode.uk" method="POST">
             <div class="field">
@@ -700,9 +704,9 @@
             </div>
 
             <div class="field">
-              <label for="need">How can we help?</label>
+              <label for="need">Message</label>
               <textarea id="need" name="need"
-                placeholder="Tell us about your business, goals or what you’re looking to automate..."></textarea>
+                placeholder="Your message"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">
