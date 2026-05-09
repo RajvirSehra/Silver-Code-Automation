@@ -1387,10 +1387,7 @@
       backdrop-filter: blur(22px);
       border: 1px solid rgba(160, 160, 180, 0.16);
       box-shadow: var(--shadow-lg);
-      display: grid;
-      grid-template-columns: 1.38fr 0.62fr;
-      gap: 28px;
-      align-items: start;
+      display: block;
     }
 
     .audit-copy h2 {
@@ -1433,7 +1430,7 @@
     .calendly-inline-widget {
       width: 100%;
       min-width: 320px;
-      height: 1120px;
+      height: 980px;
     }
 
     .audit-list {
@@ -1480,10 +1477,20 @@
       width: min(760px, 100%);
       margin: 0 auto;
       padding: 34px;
+      opacity: 1;
+      filter: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: rgba(249, 249, 251, 0.98);
       transition:
         transform var(--transition-fast),
         box-shadow var(--transition-fast),
         border-color var(--transition-fast);
+    }
+
+    .enquiry-card * {
+      opacity: 1;
+      filter: none;
     }
 
     .enquiry-card:hover {
@@ -1547,30 +1554,10 @@
 
     /* =========================================================
        CONSULTATION DESKTOP OVERRIDES
-       Keep calendar prominent and form crisp on desktop widths
     ========================================================= */
     @media (min-width: 981px) {
-      .audit-box {
-        grid-template-columns: 1.42fr 0.58fr;
-        align-items: start;
-      }
-
       .calendly-inline-widget {
-        height: 1200px;
-      }
-
-      .audit-form-card {
-        opacity: 1;
-        filter: none;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        background: rgba(249, 249, 251, 0.98);
-      }
-
-      .audit-form-card,
-      .audit-form-card * {
-        opacity: 1;
-        filter: none;
+        height: 980px;
       }
     }
 
